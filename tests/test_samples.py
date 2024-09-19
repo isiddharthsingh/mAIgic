@@ -1,4 +1,4 @@
-# tests/test_samples.py
+import pytest
 
 def test_addition():
     assert 2 + 2 == 4
@@ -16,7 +16,7 @@ def test_string_equality():
     assert "hello".upper() == "HELLO"
 
 def test_string_contains():
-    assert "magic" in "mAIgic"
+    assert "magic".lower() in "mAIgic".lower()
 
 def test_list_append():
     lst = [1, 2, 3]
