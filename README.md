@@ -103,15 +103,14 @@ workflows:
 This configuration ensures that every commit automatically goes through testing and static analysis.
 
 ### View CircleCI Status:
-The latest CircleCI build can be viewed [here](https://app.circleci.com/pipelines/github/your-username/mAIgic).
+The latest CircleCI build can be viewed [here](https://app.circleci.com/pipelines/circleci/L7kpZ5X2tZyEgUBhR4SB2j).
 
 ---
 
 ## Troubleshooting
 
 ### Common Errors:
-1. **String Comparison Issues**: In `test_string_contains`, Python string comparisons are case-sensitive. Ensure that you're using `.lower()` to handle case-insensitive checks.
-2. **Missing Dependencies**: If any dependency-related issues arise, ensure all dependencies are installed by running:
+1. **Missing Dependencies**: If any dependency-related issues arise, ensure all dependencies are installed by running:
    ```bash
    pip install -r requirements.txt
    ```
@@ -135,3 +134,10 @@ This project is licensed under the MIT License.
 6. **Troubleshooting**: Offers solutions for common errors like string comparison and missing dependencies.
 7. **License**: A placeholder for your project's license type.
 
+## Teammates
+- Siddharth Singh - sms10221@nyu.edu
+- Adittya Mittal - am14079@nyu.edu
+- Anushka Tawte - at5849@nyu.edu
+- Rafael de Leon - rdl404@nyu.edu
+- Alex Ying - aty2009@nyu.edu
+- Mridul Mittal - mm13171@nyu.edu
