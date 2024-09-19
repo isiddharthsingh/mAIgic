@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            pip install pytest ruff mypy
+      - run:
+          name: Run pytest tests
+          command: pytest tests
+      - run:
+          name: Run ruff for linting
+          command: ruff check .
+      - run:
+          name: Run mypy for type checking
+          command: mypy .
+
+workflows:
+  version: 2
+  test_and_static_analysis:
+    jobs:
+      - test
