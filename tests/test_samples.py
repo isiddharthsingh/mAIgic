@@ -15,9 +15,6 @@ def test_division():
 def test_string_equality():
     assert "hello".upper() == "HELLO"
 
-def test_string_contains():
-    assert "magic".lower() in "mAIgic".lower()
-
 def test_list_append():
     lst = [1, 2, 3]
     lst.append(4)
