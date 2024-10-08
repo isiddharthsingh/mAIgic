@@ -11,7 +11,7 @@ dependencies = [
     "types-requests"
 ]
 
-[tool.ruff.lint]
+[tool.ruff]
 select = ["E", "F", "W"]
 ignore = []
 line-length = 100
