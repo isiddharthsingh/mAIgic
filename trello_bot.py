@@ -23,7 +23,7 @@ app = App(token=SLACK_BOT_TOKEN)
 def get_trello_list_id():
     url = f"https://api.trello.com/1/boards/{TRELLO_BOARD_ID}/lists?key={TRELLO_API_KEY}&token={TRELLO_TOKEN}"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         lists = response.json()
         for lst in lists:
@@ -34,7 +34,7 @@ def get_trello_list_id():
 # Add a card to the "To Do" list in Trello
 def add_card_to_trello(card_name):
     list_id = get_trello_list_id()
-    url = f"https://api.trello.com/1/cards"
+    url = "https://api.trello.com/1/cards"
     query = {
         'key': TRELLO_API_KEY,
         'token': TRELLO_TOKEN,
@@ -42,24 +42,28 @@ def add_card_to_trello(card_name):
         'name': card_name
     }
     response = requests.post(url, params=query)
-    
+
     if response.status_code == 200:
         return response.json()
     else:
-        raise Exception(f"Failed to add card to Trello: {response.status_code}, {response.text}")
+        raise Exception(
+            f"Failed to add card to Trello: {response.status_code}, {response.text}"
+        )
 
 # Fetch Trello cards from the "To Do" list
 def get_trello_cards():
     list_id = get_trello_list_id()
     url = f"https://api.trello.com/1/lists/{list_id}/cards?key={TRELLO_API_KEY}&token={TRELLO_TOKEN}"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         cards = response.json()
         tasks = [card['name'] for card in cards]
         return tasks
     else:
-        raise Exception(f"Failed to fetch tasks from Trello: {response.status_code}, {response.text}")
+        raise Exception(
+        f"Failed to fetch tasks from Trello: {response.status_code}, {response.text}"
+        )
 
 # Post a message to Slack channel
 def post_to_slack(channel, message):
@@ -72,14 +76,14 @@ def post_to_slack(channel, message):
 def add_to_trello_task(message, say, context):
     # Extract the task from the message
     task_to_add = context['matches'][0]
-    
+
     # Add the task to Trello
     try:
-        added_card = add_card_to_trello(task_to_add)
+        add_card_to_trello(task_to_add)
         response_message = f"Added '{task_to_add}' to your Trello 'To Do' list."
     except Exception as e:
         response_message = f"Failed to add the task. Error: {e}"
-    
+
     # Post the result back to Slack
     post_to_slack(message['channel'], response_message)
 
@@ -98,7 +102,7 @@ def show_todo_tasks(body, say, event):
                 response_message = "No tasks found in 'To Do'."
         except Exception as e:
             response_message = f"Failed to fetch tasks. Error: {e}"
-        
+
         # Post the result back to Slack
         post_to_slack(event['channel'], response_message)
 
