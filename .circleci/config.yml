@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip install pytest ruff mypy
+            pip install pytest ruff mypy types-requests
       - run:
           name: Run pytest tests
           command: pytest tests
@@ -18,7 +18,7 @@ jobs:
           command: ruff check .
       - run:
           name: Run mypy for type checking
-          command: mypy .
+          command: mypy --install-types .
 
 workflows:
   version: 2
