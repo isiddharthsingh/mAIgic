@@ -18,7 +18,7 @@ jobs:
           command: ruff check .
       - run:
           name: Run mypy for type checking
-          command: mypy --install-types .
+          command: mypy --install-types --non-interactive .
 
 workflows:
   version: 2
